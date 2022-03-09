@@ -5,7 +5,7 @@ import { TableContacts } from "./TableContacts";
 
 const contacts = [
   {
-    id: "asdas",
+    id: "asdass",
     name: "asdas",
     phone: "asdas",
     action: "asdas",
@@ -19,12 +19,12 @@ const contacts = [
 ];
 
 export const Contacts = () => {
-  const reducer = useReducer(ContactReducer, contacts);
+  const [state, dispatch] = useReducer(ContactReducer, contacts);
 
   return (
     <div className="container mt-3">
-      <FormAdd />
-      <TableContacts contacts={contacts} />
+      <FormAdd dispatch={dispatch} />
+      <TableContacts contacts={state} />
     </div>
   );
 };
