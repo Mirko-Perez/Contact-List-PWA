@@ -61,7 +61,7 @@ export const FormAdd = ({ dispatch }) => {
           />
         </label>
         <div className="mx-1 d-grid gap-2">
-          <button className="btn btn-info mt-2" onClick={handleAdd}>
+          <button className="btn btn-info mt-2 mb-2" onClick={handleAdd}>
             Add
           </button>
         </div>

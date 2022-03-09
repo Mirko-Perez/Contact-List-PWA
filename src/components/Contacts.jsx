@@ -1,29 +1,32 @@
-import { useReducer } from "react";
+import { useReducer, useEffect, useState } from "react";
 import { ContactReducer } from "../reducers/ContactReducer";
 import { FormAdd } from "./FormAdd";
 import { TableContacts } from "./TableContacts";
 
-const contacts = [
-  {
-    id: "asdass",
-    name: "asdas",
-    phone: "asdas",
-    action: "asdas",
-  },
-  {
-    id: "asdas",
-    name: "asdas",
-    phone: "asdas",
-    action: "asdas",
-  },
-];
+const init = () => {
+  const user = localStorage.getItem("user");
+  return user ? JSON.parse(user) : [];
+};
 
 export const Contacts = () => {
-  const [state, dispatch] = useReducer(ContactReducer, contacts);
+  const [state, dispatch] = useReducer(ContactReducer, [], init);
+
+  useEffect(() => {
+    localStorage.setItem("user", JSON.stringify(state));
+  }, [state]);
+
+  const [formView, setformView] = useState(false);
 
   return (
     <div className="container mt-3">
-      <FormAdd dispatch={dispatch} />
+      <button
+        className="btn btn-success mt-1"
+        onClick={() => setformView(!formView)}
+      >
+        {formView ? "- Close" : "+ New"}
+      </button>
+      {formView && <FormAdd dispatch={dispatch} />}
+
       <TableContacts contacts={state} dispatch={dispatch} />
     </div>
   );
