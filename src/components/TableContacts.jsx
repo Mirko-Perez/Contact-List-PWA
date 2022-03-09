@@ -1,6 +1,15 @@
 import React from "react";
 
-export const TableContacts = ({ contacts }) => {
+export const TableContacts = ({ contacts = [], dispatch }) => {
+  const handleDelete = (id) => {
+    const actionDelete = {
+      type: "delete",
+      payload: id,
+    };
+
+    dispatch(actionDelete);
+  };
+
   return (
     <table className="table">
       <thead>
@@ -21,7 +30,12 @@ export const TableContacts = ({ contacts }) => {
               <td>{contact.name}</td>
               <td>{contact.phone}</td>
               <td>
-                <button className="btn btn-danger">Eliminar</button>
+                <button
+                  onClick={() => handleDelete(contact.id)}
+                  className="btn btn-danger"
+                >
+                  Eliminar
+                </button>
               </td>
             </tr>
           );

@@ -24,7 +24,7 @@ export const Contacts = () => {
   return (
     <div className="container mt-3">
       <FormAdd dispatch={dispatch} />
-      <TableContacts contacts={state} />
+      <TableContacts contacts={state} dispatch={dispatch} />
     </div>
   );
 };

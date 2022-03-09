@@ -26,7 +26,7 @@ export const FormAdd = ({ dispatch }) => {
   };
 
   const handleAdd = () => {
-    if (actionAdd.payload.phone.length > 10) {
+    if (actionAdd.payload.phone.length >= 10) {
       dispatch(actionAdd);
     } else {
       alert("Telefono minimo 10 caracteres");
